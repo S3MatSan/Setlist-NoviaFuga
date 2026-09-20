@@ -9,7 +9,7 @@ window.NAF_SONGS = [
   { artista: "Alejandro Sanz",    titulo: "Corazón Partío" },
   { artista: "Amaral",            titulo: "Marta, Sebas, Guille y los demás" },
   { artista: "Arnau Griso",       titulo: "Es gratis" },
-  { artista: "BB King",           titulo: "Stand by me" },
+  { artista: "Ben E. King",       titulo: "Stand by me" },
   { artista: "Blink 182",         titulo: "All the small things" },
   { artista: "Bruno Mars",        titulo: "Uptown funk" },
   { artista: "C Tangana",         titulo: "Tú me dejaste de querer" },

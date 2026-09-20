@@ -28,6 +28,7 @@ responde directamente al cliente (va con `reply-to`).
 
 1. En GitHub: **Settings → Pages**.
 2. En *Build and deployment → Source*, elegir **GitHub Actions**.
+   (El workflow intenta activarlo solo; este paso es la red de seguridad.)
 3. Al hacer push a `main` se publica sola gracias a
    `.github/workflows/deploy-pages.yml`.
 
