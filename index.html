@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Novia a la Fuga · Elige tus canciones</title>
+<meta name="description" content="Elegid hasta 20 canciones del repertorio de Novia a la Fuga para vuestra boda o fiesta de empresa.">
+<meta name="theme-color" content="#11142a">
+<meta property="og:title" content="Novia a la Fuga · Elige tus canciones">
+<meta property="og:description" content="Elegid hasta 20 canciones del repertorio para vuestro evento.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2311142a'/%3E%3Cpath d='M24 16v22.5a7 7 0 1 0 4 6.3V26l14-4v12.5a7 7 0 1 0 4 6.3V12z' fill='%23b9c3ea'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#formulario">Saltar al formulario</a>
+
+<header class="hero">
+  <div class="hero__glow" aria-hidden="true"></div>
+  <div class="hero__inner">
+    <p class="hero__kicker">Música en directo para bodas y eventos de empresa</p>
+    <h1 class="hero__title">Novia<span>a la Fuga</span></h1>
+    <p class="hero__script">- canciones -</p>
+    <p class="hero__lead">
+      Hola, somos <strong>Sebas y Javi</strong>. Bienvenidos a la elección de las
+      canciones de vuestro evento.
+    </p>
+    <p class="hero__lead hero__lead--em">
+      Podéis elegir hasta <strong id="hero-max">20</strong> temas de nuestro repertorio.
+    </p>
+    <a class="hero__cta" href="#formulario">Empezar</a>
+  </div>
+</header>
+
+<main id="formulario">
+  <form id="naf-form" novalidate>
+
+    <!-- ============ PASO 1 · DATOS ============ -->
+    <section class="section" aria-labelledby="t-datos">
+      <div class="section__head">
+        <span class="step">1</span>
+        <div>
+          <h2 id="t-datos">Vuestros datos</h2>
+          <p class="section__sub">Para poder preparar el repertorio y escribiros con la propuesta.</p>
+        </div>
+      </div>
+
+      <div class="grid-form">
+        <div class="field">
+          <label for="tipo">Tipo de evento <span class="req">*</span></label>
+          <div class="chips" role="radiogroup" aria-labelledby="tipo">
+            <label class="chip">
+              <input type="radio" name="tipo_evento" value="Boda" required>
+              <span>💍 Boda</span>
+            </label>
+            <label class="chip">
+              <input type="radio" name="tipo_evento" value="Fiesta de empresa">
+              <span>🏢 Fiesta de empresa</span>
+            </label>
+            <label class="chip">
+              <input type="radio" name="tipo_evento" value="Otro">
+              <span>🎉 Otro</span>
+            </label>
+          </div>
+          <p class="error" data-error-for="tipo_evento"></p>
+          <input type="hidden" id="tipo">
+        </div>
+
+        <div class="field">
+          <label for="nombre">Nombre y apellidos <span class="req">*</span></label>
+          <input type="text" id="nombre" name="nombre" autocomplete="name"
+                 placeholder="Persona de contacto" required>
+          <p class="error" data-error-for="nombre"></p>
+        </div>
+
+        <div class="field" id="field-entidad">
+          <label for="entidad"><span id="entidad-label">Empresa o nombre de la pareja</span></label>
+          <input type="text" id="entidad" name="entidad" autocomplete="organization"
+                 placeholder="Opcional">
+        </div>
+
+        <div class="field">
+          <label for="email">Email <span class="req">*</span></label>
+          <input type="email" id="email" name="email" autocomplete="email"
+                 placeholder="nombre@correo.com" required>
+          <p class="error" data-error-for="email"></p>
+        </div>
+
+        <div class="field">
+          <label for="telefono">Teléfono de contacto <span class="req">*</span></label>
+          <input type="tel" id="telefono" name="telefono" autocomplete="tel"
+                 placeholder="600 000 000" required>
+          <p class="error" data-error-for="telefono"></p>
+        </div>
+
+        <div class="field">
+          <label for="fecha">Fecha del evento <span class="req">*</span></label>
+          <input type="date" id="fecha" name="fecha" required>
+          <p class="error" data-error-for="fecha"></p>
+        </div>
+
+        <div class="field">
+          <label for="lugar">Lugar del evento <span class="req">*</span></label>
+          <input type="text" id="lugar" name="lugar"
+                 placeholder="Finca, sala o ciudad" required>
+          <p class="error" data-error-for="lugar"></p>
+        </div>
+
+        <div class="field field--full">
+          <label for="notas">Comentarios y momentos especiales</label>
+          <textarea id="notas" name="notas" rows="3"
+            placeholder="Primer baile, entrada, alguna canción que no esté en la lista, horarios…"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PASO 2 · CANCIONES ============ -->
+    <section class="section" aria-labelledby="t-canciones">
+      <div class="section__head">
+        <span class="step">2</span>
+        <div>
+          <h2 id="t-canciones">Elegid vuestras canciones</h2>
+          <p class="section__sub">
+            Marcad hasta <strong class="js-max">20</strong> temas. Podéis enviar menos si lo preferís.
+          </p>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <div class="search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2a8 8 0 1 0 4.9 14.32l5.39 5.4 1.42-1.42-5.4-5.39A8 8 0 0 0 10 2zm0 2a6 6 0 1 1 0 12 6 6 0 0 1 0-12z"/></svg>
+          <input type="search" id="buscador" placeholder="Buscar por grupo o canción…"
+                 aria-label="Buscar canciones" autocomplete="off">
+          <button type="button" class="search__clear" id="limpiar-busqueda" aria-label="Limpiar búsqueda" hidden>&times;</button>
+        </div>
+        <div class="toolbar__actions">
+          <button type="button" class="btn btn--ghost" id="ver-seleccion" aria-pressed="false">
+            Ver solo elegidas
+          </button>
+          <button type="button" class="btn btn--ghost" id="vaciar">Vaciar</button>
+        </div>
+      </div>
+
+      <p class="no-results" id="sin-resultados" hidden>
+        No encontramos ninguna canción con esa búsqueda.
+      </p>
+
+      <div class="songs" id="lista-canciones"></div>
+      <p class="error error--block" data-error-for="canciones"></p>
+    </section>
+
+    <!-- ============ PASO 3 · ENVÍO ============ -->
+    <section class="section" aria-labelledby="t-enviar">
+      <div class="section__head">
+        <span class="step">3</span>
+        <div>
+          <h2 id="t-enviar">Revisad y enviad</h2>
+          <p class="section__sub">Comprobad la lista antes de mandárnosla.</p>
+        </div>
+      </div>
+
+      <div class="resumen">
+        <h3 class="resumen__title">
+          Vuestra selección <span class="resumen__count" id="resumen-count">0</span>
+        </h3>
+        <ol class="resumen__list" id="resumen-lista">
+          <li class="resumen__empty">Todavía no habéis elegido ninguna canción.</li>
+        </ol>
+      </div>
+
+      <!-- Honeypot antispam: invisible para personas -->
+      <div class="hp" aria-hidden="true">
+        <label>No rellenar<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label>
+      </div>
+
+      <div class="submit-row">
+        <button type="submit" class="btn btn--primary" id="enviar">
+          <span class="btn__label">Enviar selección</span>
+          <span class="spinner" aria-hidden="true"></span>
+        </button>
+        <p class="submit-row__hint">
+          Recibiremos vuestros datos y las canciones en
+          <strong id="destino-email">noviafuga@gmail.com</strong>.
+        </p>
+      </div>
+
+      <div class="alert" id="alerta" role="alert" hidden></div>
+    </section>
+  </form>
+
+  <!-- ============ PANTALLA DE ÉXITO ============ -->
+  <section class="done" id="pantalla-ok" hidden aria-live="polite">
+    <div class="done__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>
+    </div>
+    <h2>¡Selección enviada!</h2>
+    <p id="done-text">
+      Gracias, hemos recibido vuestras canciones y los datos del evento.
+      Os escribimos muy pronto.
+    </p>
+    <div class="done__box">
+      <h3>Resumen enviado</h3>
+      <pre id="done-resumen"></pre>
+      <button type="button" class="btn btn--ghost" id="copiar-resumen">Copiar resumen</button>
+    </div>
+  </section>
+</main>
+
+<!-- Barra fija inferior con el contador -->
+<div class="sticky" id="barra">
+  <div class="sticky__inner">
+    <div class="sticky__count">
+      <span class="sticky__num"><strong id="contador">0</strong> / <span class="js-max">20</span></span>
+      <span class="sticky__label" id="contador-texto" aria-live="polite">canciones elegidas</span>
+    </div>
+    <div class="sticky__bar" aria-hidden="true"><i id="progreso"></i></div>
+    <button type="button" class="btn btn--primary btn--sm" id="ir-a-enviar">Enviar</button>
+  </div>
+</div>
+
+<footer class="footer">
+  <p class="footer__brand">Novia a la Fuga</p>
+  <p class="footer__links">
+    <a id="footer-email" href="mailto:noviafuga@gmail.com">noviafuga@gmail.com</a>
+    <span aria-hidden="true">·</span>
+    <a id="footer-ig" href="https://www.instagram.com/noviaalafuga/" target="_blank" rel="noopener">Instagram</a>
+  </p>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/songs.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
