@@ -23,10 +23,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Requiere que Pages este activado en Settings -> Pages
+      # con Source = "GitHub Actions" (solo la primera vez).
       - uses: actions/configure-pages@v5
-        with:
-          # Activa GitHub Pages automaticamente si aun no lo esta.
-          enablement: true
 
       - name: Upload site
         uses: actions/upload-pages-artifact@v3

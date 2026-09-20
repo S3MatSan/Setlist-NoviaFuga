@@ -24,13 +24,18 @@ responde directamente al cliente (va con `reply-to`).
 
 ## Puesta en marcha (2 pasos)
 
-### 1. Publicar la web en GitHub Pages
+### 1. Activar GitHub Pages (obligatorio, una sola vez)
 
-1. En GitHub: **Settings → Pages**.
+**Este paso hay que hacerlo a mano**: el token de GitHub Actions no tiene
+permiso para crear el sitio de Pages, así que el despliegue falla hasta que
+esté activado.
+
+1. Ir a **Settings → Pages** del repositorio.
 2. En *Build and deployment → Source*, elegir **GitHub Actions**.
-   (El workflow intenta activarlo solo; este paso es la red de seguridad.)
-3. Al hacer push a `main` se publica sola gracias a
-   `.github/workflows/deploy-pages.yml`.
+
+A partir de ahí, cada push a `main` publica la web sola gracias a
+`.github/workflows/deploy-pages.yml`. Para lanzar el primer despliegue sin
+esperar a un push: pestaña **Actions → Deploy to GitHub Pages → Run workflow**.
 
 La URL queda así:
 
@@ -38,8 +43,8 @@ La URL queda así:
 https://s3matsan.github.io/Setlist-NoviaFuga/
 ```
 
-> También se puede usar la opción *Deploy from a branch* (rama `main`, carpeta
-> `/ (root)`): la web es HTML estático, no necesita compilarse.
+> También sirve la opción *Deploy from a branch* (rama `main`, carpeta
+> `/ (root)`): la web es HTML estático y no necesita compilarse.
 
 ### 2. Activar el envío de emails (solo la primera vez)
 
