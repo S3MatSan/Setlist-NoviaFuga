@@ -25,8 +25,8 @@ window.NAF_CONFIG = {
   // Texto de esa autorespuesta.
   textoAutorespuesta:
     "¡Gracias por enviarnos vuestra selección! Hemos recibido correctamente " +
-    "vuestras canciones y los datos del evento. Nos ponemos con ello y os " +
-    "escribimos muy pronto.\n\nUn abrazo,\nSebas y Javi — Novia a la Fuga",
+    "vuestras canciones y los datos del show. Nos ponemos con ello y os " +
+    "escribimos muy pronto.\n\nUn abrazo,\nNovia a la Fuga",
 
   // Datos de contacto que se muestran en el pie de pagina.
   contacto: {

@@ -9,16 +9,16 @@ canciones** del repertorio de Novia a la Fuga y nos envíen sus datos por email.
 
 ## Qué recibe el cliente
 
-1. Rellena sus datos: tipo de evento, nombre, empresa/pareja, email, teléfono,
-   fecha, lugar y comentarios.
+1. Rellena sus datos: nombre y apellidos, email, teléfono, fecha y hora del
+   show, y comentarios.
 2. Marca hasta 20 canciones del repertorio (buscador incluido).
-3. Pulsa **Enviar selección**.
+3. Pulsa **Enviar** en la barra inferior.
 
 ## Qué recibimos nosotros
 
-Un email en **noviafuga@gmail.com** con una tabla con todos los datos del evento
-y la lista numerada de las canciones elegidas. Respondiendo a ese email se
-responde directamente al cliente (va con `reply-to`).
+Un email en **noviafuga@gmail.com** con una tabla con todos los datos y la
+lista numerada de las canciones elegidas. Respondiendo a ese email se responde
+directamente al cliente (va con `reply-to`).
 
 ---
 
@@ -95,10 +95,26 @@ El número se actualiza automáticamente en todos los textos de la página.
 
 ---
 
+## Si el envío no funciona
+
+Por orden de probabilidad:
+
+1. **La página está abierta como fichero local** (la barra del navegador
+   empieza por `file://`). Los navegadores bloquean los envíos desde ahí por
+   seguridad. La web avisa de esto con un mensaje explícito. Hay que usar la
+   URL publicada, o levantar un servidor local (ver más abajo).
+2. **FormSubmit no está activado.** Hasta que se pulse el enlace de
+   confirmación, no llega ningún email. Ver el paso 2 de la puesta en marcha.
+3. **Cualquier otro fallo**: la web muestra el error y ofrece un botón que abre
+   el correo del cliente con todo el resumen ya escrito, para que la selección
+   no se pierda nunca.
+
 ## Detalles técnicos
 
 - HTML, CSS y JavaScript puros. **Sin dependencias ni build.**
 - Diseño *mobile first*: la mayoría de clientes lo abren desde el móvil.
+- **Un solo botón de envío**, en la barra inferior, siempre visible y siempre
+  accesible.
 - La selección se guarda en el navegador (`localStorage`): si cierran la página
   por error, al volver siguen ahí sus canciones y sus datos.
 - Al llegar a 20 temas el resto se bloquean, con aviso.
