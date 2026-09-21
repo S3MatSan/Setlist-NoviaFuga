@@ -10,7 +10,7 @@ canciones** del repertorio de Novia a la Fuga y nos envíen sus datos por email.
 ## Qué recibe el cliente
 
 1. Rellena sus datos: nombre y apellidos, email, teléfono, fecha y hora del
-   show, y comentarios.
+   show, lugar del evento y comentarios.
 2. Marca hasta 20 canciones del repertorio (buscador incluido).
 3. Pulsa **Enviar** en la barra inferior.
 
@@ -33,9 +33,18 @@ esté activado.
 1. Ir a **Settings → Pages** del repositorio.
 2. En *Build and deployment → Source*, elegir **GitHub Actions**.
 
+#### `main` tiene que ser la rama por defecto
+
+Al activar Pages, GitHub crea el entorno `github-pages` y **solo acepta
+despliegues desde la rama por defecto del repositorio**. Si la rama por defecto
+no es `main`, los despliegues desde `main` fallan en un par de segundos y sin
+generar logs, que es justo lo que despista.
+
+Se arregla en **Settings → Branches → Default branch**, poniendo `main`.
+
 A partir de ahí, cada push a `main` publica la web sola gracias a
-`.github/workflows/deploy-pages.yml`. Para lanzar el primer despliegue sin
-esperar a un push: pestaña **Actions → Deploy to GitHub Pages → Run workflow**.
+`.github/workflows/deploy-pages.yml`. Para lanzar un despliegue sin esperar a un
+push: pestaña **Actions → Deploy to GitHub Pages → Run workflow**.
 
 La URL queda así:
 
@@ -105,9 +114,10 @@ Por orden de probabilidad:
    URL publicada, o levantar un servidor local (ver más abajo).
 2. **FormSubmit no está activado.** Hasta que se pulse el enlace de
    confirmación, no llega ningún email. Ver el paso 2 de la puesta en marcha.
-3. **Cualquier otro fallo**: la web muestra el error y ofrece un botón que abre
-   el correo del cliente con todo el resumen ya escrito, para que la selección
-   no se pierda nunca.
+3. **Cualquier otro fallo**: la web muestra el error y el cliente puede volver
+   a pulsar *Enviar*. Sus datos y sus canciones siguen guardados en la página,
+   así que no se pierde nada. El envío siempre sale desde la propia web, nunca
+   desde el programa de correo del cliente.
 
 ## Detalles técnicos
 
