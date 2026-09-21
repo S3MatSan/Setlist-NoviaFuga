@@ -231,13 +231,17 @@ input[type=date],input[type=time]{color-scheme:dark}
 .song__box svg{width:11px;height:11px;fill:#000;opacity:0;transform:scale(.4);transition:all .2s ease}
 
 .song__txt{min-width:0;flex:1}
-.song__a{
-  display:block;font-size:.94rem;font-weight:500;line-height:1.35;
-  letter-spacing:.01em;overflow-wrap:anywhere;
-}
+/* El titulo de la cancion es lo que se lee primero; el grupo, debajo. */
 .song__t{
-  display:block;font-family:var(--serif);font-style:italic;
-  font-size:1.02rem;line-height:1.35;color:var(--muted);overflow-wrap:anywhere;
+  display:block;font-family:var(--serif);
+  font-size:1.28rem;font-weight:600;line-height:1.25;
+  color:var(--text);letter-spacing:.005em;overflow-wrap:anywhere;
+}
+.song__a{
+  display:block;margin-top:.12rem;
+  font-size:.74rem;font-weight:400;line-height:1.3;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);overflow-wrap:anywhere;
 }
 
 .song input:checked ~ .song__box{background:var(--gold);border-color:var(--gold)}
@@ -258,9 +262,14 @@ input[type=date],input[type=time]{color-scheme:dark}
 }
 .picked__n{background:var(--gold);color:#000;border-radius:999px;padding:.05rem .6rem;font-size:.72rem;font-weight:600}
 .picked__list{margin:0;padding-left:1.3rem;display:grid;gap:.45rem}
-.picked__list li{font-size:.9rem;overflow-wrap:anywhere;color:var(--muted)}
-.picked__list li strong{color:var(--text);font-weight:500}
-.picked__list li em{font-family:var(--serif);font-size:1rem;font-style:italic}
+.picked__list li{overflow-wrap:anywhere;color:var(--muted);line-height:1.35}
+.picked__list li em{
+  font-family:var(--serif);font-style:normal;font-weight:600;
+  font-size:1.08rem;color:var(--text);
+}
+.picked__list li strong{
+  font-size:.7rem;font-weight:400;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);
+}
 .picked__empty{list-style:none;margin-left:-1.3rem;font-style:italic}
 
 .sendnote{margin:0;font-size:.84rem;color:var(--muted)}

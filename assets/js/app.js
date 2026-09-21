@@ -16,6 +16,7 @@
     { n: 'telefono', etiqueta: 'Teléfono',           obligatorio: true },
     { n: 'fecha',    etiqueta: 'Fecha del show',     obligatorio: true },
     { n: 'hora',     etiqueta: 'Hora del show',      obligatorio: true },
+    { n: 'lugar',    etiqueta: 'Lugar del evento',   obligatorio: true },
     { n: 'notas',    etiqueta: 'Comentarios',        obligatorio: false }
   ];
 
@@ -144,8 +145,8 @@
                '<input type="checkbox" id="' + id + '" value="' + o.i + '">' +
                '<span class="song__box">' + tick + '</span>' +
                '<span class="song__txt">' +
-                 '<span class="song__a">' + escapar(o.s.artista) + '</span>' +
                  '<span class="song__t">' + escapar(o.s.titulo) + '</span>' +
+                 '<span class="song__a">' + escapar(o.s.artista) + '</span>' +
                '</span>' +
              '</label>';
     }).join('');
@@ -161,8 +162,8 @@
       resLista.innerHTML = '<li class="picked__empty">Todavía no habéis elegido ninguna canción.</li>';
     } else {
       resLista.innerHTML = seleccion.map(function (i) {
-        return '<li><strong>' + escapar(SONGS[i].artista) + '</strong><br><em>' +
-               escapar(SONGS[i].titulo) + '</em></li>';
+        return '<li><em>' + escapar(SONGS[i].titulo) + '</em><br><strong>' +
+               escapar(SONGS[i].artista) + '</strong></li>';
       }).join('');
     }
     resN.textContent = seleccion.length;
@@ -301,6 +302,9 @@
     if (!valor('hora')) {
       ponerErr('hora', 'Indicad la hora del show.'); malos.push('hora');
     }
+    if (valor('lugar').length < 2) {
+      ponerErr('lugar', '¿Dónde se celebra? Finca, sala o ciudad.'); malos.push('lugar');
+    }
     if (!seleccion.length) {
       ponerErr('canciones', 'Elegid al menos una canción.'); malos.push('canciones');
     }
@@ -316,7 +320,7 @@
 
   function listaTexto() {
     return seleccion.map(function (i, n) {
-      return (n + 1) + '. ' + SONGS[i].artista + ' — ' + SONGS[i].titulo;
+      return (n + 1) + '. ' + SONGS[i].titulo + ' — ' + SONGS[i].artista;
     }).join('\n');
   }
 
@@ -327,7 +331,8 @@
             'Email: '             + valor('email') + '\n' +
             'Teléfono: '          + valor('telefono') + '\n' +
             'Fecha del show: '    + fechaLegible(valor('fecha')) + '\n' +
-            'Hora del show: '     + valor('hora') + '\n';
+            'Hora del show: '     + valor('hora') + '\n' +
+            'Lugar del evento: '  + valor('lugar') + '\n';
     if (valor('notas')) t += '\nComentarios:\n' + valor('notas') + '\n';
     t += '\nCANCIONES (' + seleccion.length + '/' + MAX + ')\n' +
          '----------------------------------------\n' + listaTexto() + '\n';
@@ -345,18 +350,13 @@
       'Teléfono': valor('telefono'),
       'Fecha del show': fechaLegible(valor('fecha')),
       'Hora del show': valor('hora'),
+      'Lugar del evento': valor('lugar'),
       'Comentarios': valor('notas') || '—',
       'Nº de canciones': seleccion.length + ' de ' + MAX,
       'Canciones elegidas': listaTexto()
     };
     if (CFG.autorespuesta && CFG.textoAutorespuesta) d._autoresponse = CFG.textoAutorespuesta;
     return d;
-  }
-
-  function mailto() {
-    return 'mailto:' + (CFG.emailDestino || '') +
-           '?subject=' + encodeURIComponent('Selección de canciones · Novia a la Fuga') +
-           '&body='    + encodeURIComponent(resumenTexto());
   }
 
   /* --------------------------------------------------------------- envio */
@@ -387,8 +387,8 @@
 
     // Abierto como fichero local: fetch siempre falla por seguridad del navegador.
     if (location.protocol === 'file:') {
-      fallo(new Error('La página está abierta como fichero local (file://). ' +
-                      'El envío solo funciona desde la web publicada.'));
+      fallo(new Error('La página está abierta como fichero local (file://) y el ' +
+                      'navegador bloquea el envío. Hay que usar la web publicada.'));
       return;
     }
 
@@ -450,9 +450,8 @@
     var detalle = (err && err.message) ? err.message : 'error desconocido';
     alertar(
       '<strong>No hemos podido enviar la selección.</strong><br>' +
-      'Podéis intentarlo otra vez, o ' +
-      '<a href="' + mailto() + '">enviárnoslo por email</a> ' +
-      'con un solo clic (se abre vuestro correo con todo escrito).' +
+      'Vuestros datos y vuestras canciones siguen guardados en esta página: ' +
+      'comprobad la conexión y volved a pulsar <strong>Enviar</strong>.' +
       '<small>Detalle: ' + escapar(detalle) + '</small>'
     );
     alerta.scrollIntoView({ block: 'center' });
