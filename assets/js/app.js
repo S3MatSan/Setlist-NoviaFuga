@@ -16,8 +16,7 @@
     { n: 'telefono', etiqueta: 'Teléfono',           obligatorio: true },
     { n: 'fecha',    etiqueta: 'Fecha del show',     obligatorio: true },
     { n: 'hora',     etiqueta: 'Hora del show',      obligatorio: true },
-    { n: 'lugar',    etiqueta: 'Lugar del evento',   obligatorio: true },
-    { n: 'notas',    etiqueta: 'Comentarios',        obligatorio: false }
+    { n: 'lugar',    etiqueta: 'Lugar del evento',   obligatorio: true }
   ];
 
   var $  = function (s, c) { return (c || document).querySelector(s); };
@@ -81,14 +80,6 @@
   function aplicarConfig() {
     $$('.js-max').forEach(function (el) { el.textContent = MAX; });
 
-    var d = $('#destino');
-    if (d && CFG.emailDestino) d.textContent = CFG.emailDestino;
-
-    var fe = $('#f-email');
-    if (fe && CFG.contacto && CFG.contacto.email) {
-      fe.textContent = CFG.contacto.email;
-      fe.href = 'mailto:' + CFG.contacto.email;
-    }
     var fi = $('#f-ig');
     if (fi && CFG.contacto && CFG.contacto.instagram) fi.href = CFG.contacto.instagram;
 
@@ -324,21 +315,6 @@
     }).join('\n');
   }
 
-  function resumenTexto() {
-    var t = 'NOVIA A LA FUGA · SELECCIÓN DE CANCIONES\n' +
-            '========================================\n\n' +
-            'Nombre y apellidos: ' + valor('nombre') + '\n' +
-            'Email: '             + valor('email') + '\n' +
-            'Teléfono: '          + valor('telefono') + '\n' +
-            'Fecha del show: '    + fechaLegible(valor('fecha')) + '\n' +
-            'Hora del show: '     + valor('hora') + '\n' +
-            'Lugar del evento: '  + valor('lugar') + '\n';
-    if (valor('notas')) t += '\nComentarios:\n' + valor('notas') + '\n';
-    t += '\nCANCIONES (' + seleccion.length + '/' + MAX + ')\n' +
-         '----------------------------------------\n' + listaTexto() + '\n';
-    return t;
-  }
-
   function payload() {
     var d = {
       _subject: 'Canciones · ' + valor('nombre') + ' · ' + fechaLegible(valor('fecha')),
@@ -351,7 +327,6 @@
       'Fecha del show': fechaLegible(valor('fecha')),
       'Hora del show': valor('hora'),
       'Lugar del evento': valor('lugar'),
-      'Comentarios': valor('notas') || '—',
       'Nº de canciones': seleccion.length + ' de ' + MAX,
       'Canciones elegidas': listaTexto()
     };
@@ -411,7 +386,7 @@
         // asi que no basta con mirar el codigo HTTP.
         var ok = r.res.ok && String(r.data.success).toLowerCase() !== 'false';
         if (!ok) throw new Error(r.data.message || ('El servidor respondió ' + r.res.status));
-        exito(r.data);
+        exito();
       })
       .catch(fallo);
   });
@@ -424,19 +399,12 @@
     else form.dispatchEvent(new Event('submit', { cancelable: true }));
   });
 
-  function exito(data) {
+  function exito() {
     try { localStorage.removeItem(STORE); } catch (e) {}
 
-    $('#ok-resumen').textContent = resumenTexto();
-
-    var msg = String((data && data.message) || '');
-    if (/activat|confirm/i.test(msg)) {
-      $('#ok-text').innerHTML =
-        'Hemos registrado vuestra selección.<br>' +
-        '<strong>Aviso para la banda:</strong> el buzón aún no está activado. ' +
-        'Revisad el correo de confirmación de FormSubmit en ' +
-        escapar(CFG.emailDestino || '') + '.';
-    }
+    // La portada invita a «Empezar»: sobra una vez enviado.
+    var hero = $('#hero');
+    if (hero) hero.hidden = true;
 
     form.hidden = true;
     pantallaOk.hidden = false;
@@ -448,6 +416,20 @@
   function fallo(err) {
     ocupado(false);
     var detalle = (err && err.message) ? err.message : 'error desconocido';
+
+    // El formulario ha llegado, pero el buzon de destino esta sin activar.
+    // Solo puede verlo la banda mientras hace sus pruebas.
+    if (/activat/i.test(detalle)) {
+      alertar(
+        '<strong>El envío ha llegado, pero el buzón está sin activar.</strong><br>' +
+        'Hay un correo con un enlace <em>Activate Form</em> esperando en la bandeja ' +
+        'de la banda. Al pulsarlo queda activado de forma definitiva; después, ' +
+        'volved a pulsar <strong>Enviar</strong> y todo llegará con normalidad.'
+      );
+      alerta.scrollIntoView({ block: 'center' });
+      return;
+    }
+
     alertar(
       '<strong>No hemos podido enviar la selección.</strong><br>' +
       'Vuestros datos y vuestras canciones siguen guardados en esta página: ' +
@@ -457,23 +439,6 @@
     alerta.scrollIntoView({ block: 'center' });
     if (window.console) console.error('[Novia a la Fuga] Error al enviar:', err);
   }
-
-  $('#copiar').addEventListener('click', function () {
-    var txt = $('#ok-resumen').textContent;
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(txt)
-        .then(function () { toast('Resumen copiado.'); })
-        .catch(function () { toast('No se pudo copiar.'); });
-      return;
-    }
-    var ta = document.createElement('textarea');
-    ta.value = txt;
-    document.body.appendChild(ta);
-    ta.select();
-    try { document.execCommand('copy'); toast('Resumen copiado.'); }
-    catch (e) { toast('No se pudo copiar.'); }
-    document.body.removeChild(ta);
-  });
 
   /* ---------------------------------------------------------------- init */
 

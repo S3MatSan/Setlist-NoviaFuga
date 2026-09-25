@@ -10,15 +10,19 @@ canciones** del repertorio de Novia a la Fuga y nos envíen sus datos por email.
 ## Qué recibe el cliente
 
 1. Rellena sus datos: nombre y apellidos, email, teléfono, fecha y hora del
-   show, lugar del evento y comentarios.
+   show y lugar del evento.
 2. Marca hasta 20 canciones del repertorio (buscador incluido).
 3. Pulsa **Enviar** en la barra inferior.
 
 ## Qué recibimos nosotros
 
-Un email en **noviafuga@gmail.com** con una tabla con todos los datos y la
-lista numerada de las canciones elegidas. Respondiendo a ese email se responde
-directamente al cliente (va con `reply-to`).
+Un email con una tabla con todos los datos y la lista numerada de las canciones
+elegidas. Respondiendo a ese email se responde directamente al cliente (va con
+`reply-to`).
+
+La dirección de destino **no aparece escrita en ninguna pantalla de la web**.
+Vive solo en `endpoint`, dentro de `assets/js/config.js`. Para quitarla también
+del código fuente, ver el paso 2.
 
 ---
 
@@ -64,8 +68,8 @@ El formulario usa [FormSubmit](https://formsubmit.co) — gratuito y sin registr
 3. Pulsar el enlace de activación. **A partir de ahí todo llega automáticamente.**
 
 **Recomendado después de activarlo:** FormSubmit da un código aleatorio propio.
-Ponerlo en `assets/js/config.js` en lugar del email evita que la dirección quede
-visible en el código de la página (menos spam):
+Ponerlo en `assets/js/config.js` en lugar del email quita la dirección también
+del código fuente, que es lo que rastrean los robots de spam:
 
 ```js
 endpoint: "https://formsubmit.co/ajax/TU_CODIGO_ALEATORIO",
