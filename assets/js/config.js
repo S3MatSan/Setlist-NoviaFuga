@@ -3,16 +3,17 @@
  * Este es el unico fichero que normalmente necesitareis tocar.
  */
 window.NAF_CONFIG = {
-  // Correo donde llegan las selecciones de los clientes.
-  emailDestino: "noviafuga@gmail.com",
-
-  // Endpoint que envia el formulario por email.
-  // Por defecto usa FormSubmit (gratis y sin registro): el primer envio
-  // genera un email de activacion a emailDestino con un enlace que hay que
-  // pulsar UNA sola vez. A partir de ahi todo llega automaticamente.
+  // Endpoint que envia el formulario por email. Es el unico sitio de todo el
+  // proyecto donde aparece la direccion de destino; la web no la escribe en
+  // ninguna pantalla.
   //
-  // Recomendado tras activarlo: sustituir el email por el codigo aleatorio
-  // que FormSubmit envia, para no exponer la direccion en el codigo fuente.
+  // Usa FormSubmit (gratis y sin registro): el primer envio genera un email de
+  // activacion con un enlace que hay que pulsar UNA sola vez. A partir de ahi
+  // todo llega automaticamente.
+  //
+  // RECOMENDADO tras activarlo: FormSubmit da un codigo aleatorio propio.
+  // Ponerlo aqui en lugar del email quita la direccion tambien del codigo
+  // fuente, que es lo que rastrean los robots de spam.
   //   Ej: "https://formsubmit.co/ajax/a1b2c3d4e5f6g7h8i9j0"
   endpoint: "https://formsubmit.co/ajax/noviafuga@gmail.com",
 
@@ -28,9 +29,9 @@ window.NAF_CONFIG = {
     "vuestras canciones y los datos del show. Nos ponemos con ello y os " +
     "escribimos muy pronto.\n\nUn abrazo,\nNovia a la Fuga",
 
-  // Datos de contacto que se muestran en el pie de pagina.
+  // Enlace de Instagram del pie de pagina.
+  // El email no se escribe en ninguna parte de la web, a proposito.
   contacto: {
-    email: "noviafuga@gmail.com",
     instagram: "https://www.instagram.com/noviaalafuga/"
   }
 };

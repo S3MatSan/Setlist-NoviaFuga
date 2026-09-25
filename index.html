@@ -80,14 +80,8 @@
         <div class="field field--wide">
           <label for="lugar">Lugar del evento <i>*</i></label>
           <input type="text" id="lugar" name="lugar"
-                 placeholder="Finca, sala o ciudad" required>
+                 placeholder="Venue o Finca" required>
           <p class="err" data-err="lugar"></p>
-        </div>
-
-        <div class="field field--wide">
-          <label for="notas">Comentarios</label>
-          <textarea id="notas" name="notas" rows="3"
-            placeholder="Momentos especiales, alguna canción que no esté en la lista, horarios…"></textarea>
         </div>
       </div>
     </section>
@@ -140,8 +134,7 @@
       </div>
 
       <p class="sendnote">
-        Al enviar, recibiremos vuestros datos y las canciones en
-        <strong id="destino">noviafuga@gmail.com</strong>.
+        Al enviar nos llegan vuestros datos y las canciones elegidas.
       </p>
 
       <div class="alert" id="alerta" role="alert" hidden></div>
@@ -156,11 +149,6 @@
       Gracias. Hemos recibido vuestras canciones y los datos del show.
       Os escribimos muy pronto.
     </p>
-    <div class="done__box">
-      <p class="done__boxhead">Resumen</p>
-      <pre id="ok-resumen"></pre>
-      <button type="button" class="pill" id="copiar">Copiar resumen</button>
-    </div>
   </section>
 </main>
 
@@ -182,8 +170,6 @@
 <footer class="footer">
   <p class="footer__brand">Novia a la Fuga</p>
   <p class="footer__links">
-    <a id="f-email" href="mailto:noviafuga@gmail.com">noviafuga@gmail.com</a>
-    <span aria-hidden="true">·</span>
     <a id="f-ig" href="https://www.instagram.com/noviaalafuga/" target="_blank" rel="noopener">Instagram</a>
   </p>
 </footer>

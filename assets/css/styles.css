@@ -290,17 +290,6 @@ input[type=date],input[type=time]{color-scheme:dark}
 .done__mark{font-size:2.4rem;color:var(--gold);margin:0 0 1rem;line-height:1}
 .done h2{font-family:var(--serif);font-weight:400;font-size:clamp(2rem,8vw,2.7rem);margin:0 0 1rem}
 .done__lead{margin:0 auto;max-width:28rem;color:var(--muted);font-size:.95rem}
-.done__box{
-  margin:2.6rem auto 0;text-align:left;
-  border:1px solid var(--line);border-radius:var(--r);padding:1.3rem 1.4rem;
-}
-.done__boxhead{margin:0 0 .9rem;font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-dim);font-weight:500}
-.done__box pre{
-  margin:0 0 1.2rem;white-space:pre-wrap;overflow-wrap:anywhere;
-  font-family:ui-monospace,'SFMono-Regular',Menlo,monospace;
-  font-size:.76rem;line-height:1.75;color:var(--muted);
-  max-height:17rem;overflow:auto;
-}
 
 /* ========================== BARRA DE ENVÍO ========================== */
 .bar{
@@ -382,7 +371,8 @@ input[type=date],input[type=time]{color-scheme:dark}
 }
 
 body.is-done{padding-bottom:0}
-.bar[hidden]{display:none}
+.bar[hidden],
+.hero[hidden]{display:none}
 
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
